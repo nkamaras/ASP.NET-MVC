@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using SL_TechProject.Models;
+
+namespace SL_TechProject
+{
+
+    public class DataAccessLayer
+    {
+        public DataAccessLayer() { }
+
+        public void storeDriver(driver driver) {
+            using (var ctx = new DBModels())
+            {
+                ctx.driver.Add(new driver()
+                {
+                    identityCard =  driver.identityCard,
+                    firstName =  driver.firstName,
+                    lastName = driver.lastName
+                });
+
+                ctx.SaveChanges();
+            }
+        }
+
+    }
+}
