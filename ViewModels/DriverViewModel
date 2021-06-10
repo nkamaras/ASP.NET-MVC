@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.ComponentModel.DataAnnotations;
+
+namespace SL_TechProject.ViewModels
+{
+    public class DriverViewModel
+    {
+        [Required(ErrorMessage = "Παρακαλώ δώστε αριθμό ταυτότητας.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Αριθμός Ταυτότητας")]
+        public string identityCard { get; set; }
+
+        [Required(ErrorMessage = "Παρακαλώ δώστε όνομα.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Όνομα")]
+        public string firstName { get; set; }
+
+        [Required(ErrorMessage = "Παρακαλώ δώστε επώνυμο.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Επώνυμο")]
+        public string lastName { get; set; }
+    }
+}
