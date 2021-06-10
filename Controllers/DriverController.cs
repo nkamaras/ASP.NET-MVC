@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using SL_TechProject.Models;
+using SL_TechProject.ViewModels;
 using System.Net.Http;
 
 namespace SL_TechProject.Controllers
@@ -21,15 +22,23 @@ namespace SL_TechProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertDriver(driver driver) {
+        public ActionResult InsertDriver(DriverViewModel driverViewModel) {
 
             ViewBag.Submitted = false;
             var created = false;
+
+            var driverModel = new driver()
+            {
+                firstName = driverViewModel.firstName,
+                lastName = driverViewModel.lastName,
+                identityCard = driverViewModel.identityCard
+            };
+
             // Create the Client
             if (HttpContext.Request.RequestType == "POST")
             {
                 ViewBag.Submitted = true;
-                HttpResponseMessage response = serviceRepo.PostAction(driver, "api/driver/createNewDriver");
+                HttpResponseMessage response = serviceRepo.PostAction(driverModel, "api/driver/createNewDriver");
                 // Denote that the client was created
                 created = true;
                 response.EnsureSuccessStatusCode();
